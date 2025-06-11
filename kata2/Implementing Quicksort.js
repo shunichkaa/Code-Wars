@@ -115,4 +115,4 @@ function quicksort(data) {
 
 	quicksortHelper(arrayCopy, 0, arrayCopy.length - 1);
 	return snapshots;
-}
+	}
