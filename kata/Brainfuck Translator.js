@@ -64,7 +64,6 @@
 
 
 
-
 function brainfuck_to_c(sc){
 	let code = [...sc].filter(c => '+-<>.,[]'.includes(c)).join('');
 
