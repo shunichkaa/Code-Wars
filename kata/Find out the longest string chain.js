@@ -34,8 +34,6 @@
 // 2 . If there is more than one chains have same length, return the first one(follow the order from left to right, from top to bottom.)
 //
 // 3 . As a good programmer, you should not modify the original array.
-//
-
 
 
 function findChain(arr) {

@@ -15,8 +15,6 @@
 // 	Are you smart enough to solve this problem and save the Christmas?
 //
 // 	Your code must work well on any possible function h, not only on those few used to validate it here.
-//
-
 
 
 function crackHash(h, y) {
