@@ -1,8 +1,6 @@
 // When no more interesting kata can be resolved, I just choose to create the new kata, to solve their own, to enjoy the process --myjinxin2015 said
-//
 // Description:
-// 	There is a matrix that contains some points(Use A-Z to represent them).
-//
+// There is a matrix that contains some points(Use A-Z to represent them).
 // . . . . . .
 // . . A . . .
 // 	. . . . . .
@@ -10,19 +8,20 @@
 // 	. . D . . .
 // 	B . . . . C
 // Find out the "center" point(s) which has the minimum sum of the pythagorean distances to the other points.
-//
-// 	In the example above, the "center" point is "D", so the result is ["D"].
-//
-// 	Arguments:
-//
-// matrix: A string that contains A,B,C... Each row is separated by "\n". Each point is separated by space(Please ignore space when you calculate the distance ;-) An example: In matrix above, the distance from B to C is 5, not 10 ;-))
+// In the example above, the "center" point is "D", so the result is ["D"].
+// Arguments:
+// matrix: A string that contains A,B,C...
+// Each row is separated by "\n".
+// Each point is separated by space(Please ignore space when you calculate the distance ;-)
+// An example: In matrix above, the distance from B to C is 5, not 10 ;-))
 // Results & Note:
-//
 // Returns an array that contains all "center" point(s).
-// 	If more than one points are found, sort them according to the order A-Z.
-// 	How to compare two distance are same? In the calculation process, the float numbers have the precision problem. So, we should rounding number to 6 decimal places, and then compare them.
-// 	You can assume that there are at least two points in the matrix, up to 26 points.
-// 	Some Examples
+// If more than one points are found, sort them according to the order A-Z.
+// How to compare two distance are same?
+// In the calculation process, the float numbers have the precision problem.
+// So, we should rounding number to 6 decimal places, and then compare them.
+// You can assume that there are at least two points in the matrix, up to 26 points.
+// Some Examples
 // matrix=
 // . . . . . .
 // . . A . . .
@@ -31,8 +30,6 @@
 // 	. . D . . .
 // 	B . . . . C
 // findCenterPoints(matrix) === ["D"]
-//
-//
 // matrix=
 // 	A . . . . B
 // 		. . . . . .

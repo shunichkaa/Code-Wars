@@ -1,47 +1,35 @@
 // What is DFA and NFA
 // For more information about definition NFA and DFA for this kata see this and this katas.
-//
-// 	In general terms, DFA and NFA are described by:
-//
-// 	a set of states
+// In general terms, DFA and NFA are described by:
+// a set of states
 // one (for DFA) or more start states
 // a set of transitions
 // a set of accepted states
 // Both separate set of all posible strings on two group:
-//
-// 	accepted
+// accepted
 // not accepted
 // String is accepted if a path exists from any start state to any accepted state by transitions corresponding to the characters in the string.
-//
-// 	DFA contains no more than one transition for each pair of state and character. NFA can contains multiple transition for there pairs.
-//
-// 	In addition NFA can contain empty transitions.
-//
-// 	An interesting fact, for any NFA, you can construct an equivalent DFA.
-//
-// 	Task
+// DFA contains no more than one transition for each pair of state and character.
+// NFA can contains multiple transition for there pairs.
+// In addition NFA can contain empty transitions.
+// An interesting fact, for any NFA, you can construct an equivalent DFA.
+// Task
 // Write a function NFAtoDFA that to the given NFA construct an equivalent (accepted the same strings) DFA.
-//
-// 	Function get NFA in following format:
-//
-// 	Start states (array of number)
+// Function get NFA in following format:
+// Start states (array of number)
 // Transitions (array of [number, symbol, number])
 // Accepted states (array of numbers)
 // And must return answer array of 3 elements:
-//
-// 	answer[0] - Start state of DFA (number)
+// answer[0] - Start state of DFA (number)
 // answer[1] - Transition of DFA (array of [number, symbol, number])
 // answer[2] - Accepted states of DFA (array of numbers)
-// Note: In some definitions of DFA, also indicate the need for a transition for each state and each symbol to have one transition, in this kata there can be 0.
-//
+// Note: In some definitions of DFA, also indicate the need for a transition for each state and each symbol to have one transition,
+// in this kata there can be 0.
 // Example
 // NFA and DFA for /^(a|b)*a$/
-//
-// 	For this NFA:
-//
-// 	In function you get:
-//
-// 	startStates = [0]
+// For this NFA:
+// In function you get:
+// startStates = [0]
 // transitions = [
 // 	[0, '', 1], // q0 --> q1
 // 	[0, '', 5], // q0 --> q5
@@ -55,8 +43,7 @@
 // ]
 // acceptStates = [6]
 // For this DFA:
-//
-// 	dfaStartState = 0
+// dfaStartState = 0
 // dfaTransitions = [
 // 	[0, 'a', 1],
 // 	[1, 'a', 1],
@@ -67,7 +54,6 @@
 // ]
 // dfaAcceptStates = [1]
 // And your output can be:
-//
 // 	[
 // 		dfaStartState,
 // 		dfaTransitions,
@@ -76,9 +62,8 @@
 
 
 function NFAtoDFA(startStates, transitions, acceptStates) {
-	// Построим карту переходов и ε-переходов
 	const epsilon = '';
-	const nfaTransitions = new Map(); // Map<state, Map<symbol, Set<state>>>
+	const nfaTransitions = new Map();
 	const allSymbols = new Set();
 
 	for (const [from, sym, to] of transitions) {
@@ -89,7 +74,6 @@ function NFAtoDFA(startStates, transitions, acceptStates) {
 		if (sym !== epsilon) allSymbols.add(sym);
 	}
 
-	// Функция для ε-замыкания множества состояний
 	function epsilonClosure(states) {
 		const stack = [...states];
 		const closure = new Set(states);
@@ -108,7 +92,6 @@ function NFAtoDFA(startStates, transitions, acceptStates) {
 		return closure;
 	}
 
-	// Функция перехода по символу с ε-замыканием
 	function move(states, symbol) {
 		const result = new Set();
 		for (const state of states) {
@@ -122,10 +105,8 @@ function NFAtoDFA(startStates, transitions, acceptStates) {
 		return epsilonClosure(result);
 	}
 
-	// Начальное состояние DFA - ε-замыкание стартовых состояний NFA
 	const startClosure = epsilonClosure(new Set(startStates));
 
-	// Map множества состояний NFA -> номер состояния DFA
 	const dfaStatesMap = new Map();
 	const dfaStatesList = [];
 	const queue = [];
@@ -147,7 +128,6 @@ function NFAtoDFA(startStates, transitions, acceptStates) {
 		const currKey = statesToKey(currStates);
 		const currDfaState = dfaStatesMap.get(currKey);
 
-		// Проверяем, является ли это принимающим состоянием
 		for (const s of currStates) {
 			if (acceptStates.includes(s)) {
 				dfaAcceptStates.add(currDfaState);
@@ -155,7 +135,6 @@ function NFAtoDFA(startStates, transitions, acceptStates) {
 			}
 		}
 
-		// Для каждого символа ищем переход
 		for (const sym of allSymbols) {
 			const nextStates = move(currStates, sym);
 			if (nextStates.size === 0) continue;

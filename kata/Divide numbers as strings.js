@@ -1,16 +1,16 @@
 // Divide numbers as strings
-//
 // Input can be integer, negative, zero, or decimal in string format.
-// 	Input may be very large.
-// 	Input won't have leading or trailing zeroes.
+// Input may be very large.
+// Input won't have leading or trailing zeroes.
 // Result should be returned as strings without leading or trailing zeroes.
-// 	Recurring results should be to 20 decimal places. i.e. 1/3 should return 0.33333333333333333333. Just stop computing when your result gets to 20 decimal places. (i.e. no need to compute to 21 decimal places and round to 20 decimal places).
-// If divisor is zero, throw Error (Exception in PHP).
-// 0.00000000000000000000 is just 0.
-// You may first attempt Voile's Divide integers as strings as an appetizer.
-//
-// Note: bignumber.js is not allowed and your code length should be less than or equal to 6000 symbols.
-//
+// Recurring results should be to 20 decimal places.
+// For example, 1/3 should return "0.33333333333333333333".
+// Stop computing when result reaches 20 decimal places — no rounding required.
+// If divisor is zero, throw Error.
+// "0.00000000000000000000" should be returned as "0".
+// bignumber.js is not allowed.
+// Code length must be ≤ 6000 symbols.
+
 
 function largeDiv(a, b) {
 	if (b === '0') throw new Error('Division by zero');

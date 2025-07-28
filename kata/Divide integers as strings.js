@@ -1,8 +1,9 @@
-// Given positive integers a and b as strings, evaluate a / b and return the quotient and the remainder as strings in the form [quotient, remainder].
-//
-// 	a and b can be very large (at the order of 10^150 to 10^200)
-// As usual, your result should not have leading 0s
-// require is disabled in JavaScript. Do it yourself ;-)
+// Given positive integers a and b as strings, evaluate a / b and return the quotient
+// and the remainder as strings in the form [quotient, remainder].
+// a and b can be very large (around 10^150 to 10^200).
+// Result should not have leading zeros.
+// `require` is disabled in JavaScript, so implement division yourself without external libraries.
+
 
 function compareStrings(a, b) {
 	if (a.length > b.length) return 1;
@@ -57,7 +58,6 @@ function divideStrings(a, b) {
 		remainder += a[i];
 		remainder = remainder.replace(/^0+/, '') || '0';
 
-		// Найти max digit q, что b * q <= remainder
 		let low = 0, high = 9, q = 0;
 		while (low <= high) {
 			let mid = Math.floor((low + high) / 2);

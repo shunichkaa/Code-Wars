@@ -1,25 +1,21 @@
 // Task
-// You are given a 2D integer array matrix. Your task is to find the max sum value of the contiguous-submatrix in it.
-//
-// 	Example
+// You are given a 2D integer array matrix.
+// Your task is to find the max sum value of the contiguous-submatrix in it.
+// Example
 // For matrix =
-//
 // 	[
 // 		[1,2,3],
 // 		[4,5,6],
 // 		[7,8,9]
 // 	]
 // The output should be 45(the whole 3x3 array)
-//
 // For matrix =
-//
 // 	[
 // 		[-1, -2, -3],
 // 		[ 4,  5,  6],
 // 		[-7, -8, -9]
 // 	]
 // The output should be 15(1x3 sub matrix).
-//
 // [
 // 	[-1, -2, -3],
 // 	+-------------+
@@ -28,14 +24,12 @@
 // 	[-7, -8, -9]
 // ]
 // For matrix =
-//
 // 	[
 // 		[-1,  -2, -3],
 // 		[-4,   5, -6],
 // 		[-7,  -8, -9]
 // 	]
 // The output should be 5(1x1 sub matrix).
-//
 // [
 // 	[-1,  -2, -3],
 // 	+---+
@@ -45,19 +39,12 @@
 // ]
 // Note
 // In the random tests:
-//
-// 	30 testcases testing with 3 <= matrix.length <= 10.
-//
-// 	70 testcases testing with matrix.length = 250.
-//
+// 30 testcases testing with 3 <= matrix.length <= 10.
+// 70 testcases testing with matrix.length = 250.
 // 	-127 <= matrix[i][j] <= 127
-//
-// 	If you feel this kata is too hard, please try the challenge version or simple version.
-//
-// 	If you feel this kata is too easy.. Hmm.. perhaps you can write a new kata and let me know ;-)
-//
+// If you feel this kata is too hard, please try the challenge version or simple version.
+// If you feel this kata is too easy.. Hmm.. perhaps you can write a new kata and let me know ;-)
 // Happy Coding ^_^
-//
 
 
 function maxSumOf(matrix) {

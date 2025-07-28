@@ -1,35 +1,25 @@
-// This is the Performance version of simple version. If your code runs more than 7000ms, please optimize your code or try the simple version
-//
-// Task
-// A game I played when I was young: Draw 4 cards from playing cards, use + - * / and () to make the final results equal to 24.
-//
-// You will coding in function equalTo24. Function accept 4 parameters a b c d(4 numbers), value range is 1-100.
-//
-// The result is a string such as "2*2*2*3" ,(4+2)*(5-1); If it is not possible to calculate the 24, please return "It's not possible!"
-//
-// All four cards are to be used, only use three or two cards are incorrect; Use a card twice or more is incorrect too.
-//
-// 	You just need to return one correct solution, don't need to find out all the possibilities.
-//
-// The different between "challenge version" and "simple version":
-//
-// 1) a,b,c,d range:  In "challenge version" it is 1-100,
-// 	In "simple version" it is 1-13.
-// 2) "challenge version" has 1000 random testcases,
-// 	"simple version" only has 20 random testcases.
-// 	Some examples:
-// 	equalTo24(1,2,3,4) //can return "(1+3)*(2+4)" or "1*2*3*4"
-// equalTo24(2,3,4,5) //can return "(5+3-2)*4" or "(3+4+5)*2"
-// equalTo24(3,4,5,6) //can return "(3-4+5)*6"
-// equalTo24(1,1,1,1) //should return "It's not possible!"
-// equalTo24(13,13,13,13) //should return "It's not possible!"
+// Performance version of 24-point card game. If code runs >7000ms, optimize it or try simple version.
+// Task: Use 4 cards (values 1-100) with +-*/ and () to make 24.
+// Function equalTo24(a,b,c,d) should return solution string like "2*2*2*3" or "(4+2)*(5-1)".
+// Return "It's not possible!" if no solution exists.
+// Rules:
+// - Must use all 4 cards exactly once
+// - Only need to return one valid solution
+// Differences from simple version:
+// - Values range 1-100 (vs 1-13)
+// - 1000 test cases (vs 20)
+// Examples:
+// equalTo24(1,2,3,4) → "(1+3)*(2+4)" or "1*2*3*4"
+// equalTo24(2,3,4,5) → "(5+3-2)*4" or "(3+4+5)*2"
+// equalTo24(3,4,5,6) → "(3-4+5)*6"
+// equalTo24(1,1,1,1) → "It's not possible!"
+// equalTo24(13,13,13,13) → "It's not possible!"
 
 
 function equalTo24(a, b, c, d) {
 	const nums = [a, b, c, d];
 	const ops = ['+', '-', '*', '/'];
 
-	// генерируем все перестановки из 4 чисел
 	function permute(arr) {
 		const res = [];
 		const backtrack = (path, used) => {
@@ -47,27 +37,23 @@ function equalTo24(a, b, c, d) {
 		return res;
 	}
 
-	// применить оператор
 	function apply(a, op, b) {
 		if (op === '+') return a + b;
 		if (op === '-') return a - b;
 		if (op === '*') return a * b;
 		if (op === '/') {
-			if (Math.abs(b) < 1e-6) return null; // деление на 0
+			if (Math.abs(b) < 1e-6) return null;
 			return a / b;
 		}
 	}
 
-	// сравнение с допуском
 	function is24(x) {
 		return Math.abs(x - 24) < 1e-6;
 	}
 
-	// все варианты расстановки скобок
 	function evaluate(a, b, c, d, op1, op2, op3) {
 		const res = [];
 
-		// ((a op1 b) op2 c) op3 d
 		const t1 = apply(a, op1, b);
 		if (t1 !== null) {
 			const t2 = apply(t1, op2, c);
@@ -79,7 +65,6 @@ function equalTo24(a, b, c, d) {
 			}
 		}
 
-		// (a op1 (b op2 c)) op3 d
 		const t4 = apply(b, op2, c);
 		if (t4 !== null) {
 			const t5 = apply(a, op1, t4);
@@ -91,7 +76,6 @@ function equalTo24(a, b, c, d) {
 			}
 		}
 
-		// a op1 ((b op2 c) op3 d)
 		if (t4 !== null) {
 			const t7 = apply(t4, op3, d);
 			if (t7 !== null) {
@@ -102,7 +86,6 @@ function equalTo24(a, b, c, d) {
 			}
 		}
 
-		// a op1 (b op2 (c op3 d))
 		const t9 = apply(c, op3, d);
 		if (t9 !== null) {
 			const t10 = apply(b, op2, t9);
@@ -114,7 +97,6 @@ function equalTo24(a, b, c, d) {
 			}
 		}
 
-		// (a op1 b) op2 (c op3 d)
 		const t12 = apply(a, op1, b);
 		const t13 = apply(c, op3, d);
 		if (t12 !== null && t13 !== null) {

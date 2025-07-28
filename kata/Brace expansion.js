@@ -1,34 +1,18 @@
 // Expand the braces of the specified string. See https://en.wikipedia.org/wiki/Bash_(Unix_shell)#Brace_expansion
-//
-// 	In the input string, balanced pairs of braces containing comma-separated substrings represent alternations that specify multiple alternatives which are to appear at that position in the output.
-//
-// 	@param {string} str
+// In the input string, balanced pairs of braces containing comma-separated substrings represent alternations
+// that specify multiple alternatives which are to appear at that position in the output.
+// @param {string} str
 // @return {Array.<string>}
-// 		NOTE: The order of output string does not matter.
-//
-// 		Example:
-//
-// 		"~/{Downloads,Pictures}/*.{jpg,gif,png}" -> [ "~/Downloads/*.jpg"
-// 		, "~/Downloads/*.gif"
-// 		, "~/Downloads/*.png"
-// 		, "~/Pictures/*.jpg"
-// 		, "~/Pictures/*.gif"
-// 		, "~/Pictures/*.png"
-// 		]
-// 		"It{{em,alic}iz,erat}e{d,}, please." -> [ "Itemized, please."
-// 		, "Itemize, please."
-// 		, "Italicized, please."
-// 		, "Italicize, please."
-// 		, "Iterated, please."
-// 		, "Iterate, please."
-// 		]
-// 		"thumbnail.{png,jp{e,}g}" -> [ "thumbnail.png"
-// 		, "thumbnail.jpeg"
-// 		, "thumbnail.jpg"
-// 		]
-// 		"nothing to do" -> [ "nothing to do" ]
-// 		(c)RSS
-//
+// NOTE: The order of output string does not matter.
+// Example:
+// "~/{Downloads,Pictures}/*.{jpg,gif,png}" ->
+// [ "~/Downloads/*.jpg", "~/Downloads/*.gif", "~/Downloads/*.png", "~/Pictures/*.jpg", "~/Pictures/*.gif", "~/Pictures/*.png" ]
+// "It{{em,alic}iz,erat}e{d,}, please." ->
+// [ "Itemized, please.", "Itemize, please.", "Italicized, please.", "Italicize, please.", "Iterated, please.", "Iterate, please." ]
+// "thumbnail.{png,jp{e,}g}" ->
+// [ "thumbnail.png", "thumbnail.jpeg", "thumbnail.jpg" ]
+// "nothing to do" -> [ "nothing to do" ]
+// (c)RSS
 
 
 function expandBraces(str) {

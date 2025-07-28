@@ -3,6 +3,7 @@
 // After your function finds the needle it should return a message (as a string) that says:
 // 	"found the needle at position " plus the index it found the needle
 
+
 function findNeedle(haystack) {
 	const index = haystack.indexOf('needle');
 	return `found the needle at position ${index}`;
